@@ -4,6 +4,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onBack;
   final VoidCallback? onTheme;
   final String name;
+  static bool buttonTheme = false;
 
   const CustomAppBar({
     super.key,
@@ -15,7 +16,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppTheme.appBarManeColor,
+      elevation: 0,
+      backgroundColor: Provider.of<SwapTheme>(context).getTheme ? AppTheme.appBarManeColorLight : AppTheme.appBarManeColorDark,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -25,12 +27,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           Text(
             name,
-            style: TextLocalStyles.roboto400.copyWith(fontSize: 18, color: Colors.white),
+            style: TextLocalStyles.roboto400.copyWith(fontSize: 18, color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(22, 26, 29, 1) : Colors.white),
             textAlign: TextAlign.center,
           ),
           GradientAnimatedIconButton(
-            icon: 'assets/svg/charm_sun.svg',
-            onPressed: onTheme ?? () {},
+            icon: Provider.of<SwapTheme>(context).getTheme ? 'assets/svg/moon.svg' : 'assets/svg/charm_sun.svg',
+            onPressed: onTheme ?? () {
+              Provider.of<SwapTheme>(context, listen: false).updateTheme();
+            },
           ),
         ],
       ),
@@ -53,10 +57,17 @@ class GradientAnimatedIconButton extends StatefulWidget {
 }
 
 class _GradientAnimatedIconButtonState extends State<GradientAnimatedIconButton> {
-  static const gradientColors = [
-    [AppTheme.appBarButtonFirstBorderColor, AppTheme.appBarButtonSecondBorderColor],
+
+  static const gradientColorsDark = [
+  [AppTheme.appBarButtonFirstBorderColorDark, AppTheme.appBarButtonSecondBorderColorDark],
+  [AppTheme.mainGreenColor, AppTheme.mainGreenColor],
+  [AppTheme.appBarButtonFillColor2Dark, AppTheme.appBarButtonFillColor1Dark],
+  ];
+
+  static const gradientColorsLight = [
+    [AppTheme.appBarButtonFirstBorderColorLight, AppTheme.appBarButtonSecondBorderColorLight],
     [AppTheme.mainGreenColor, AppTheme.mainGreenColor],
-    [AppTheme.appBarButtonFillColor2, AppTheme.appBarButtonFillColor1],
+    [AppTheme.appBarButtonFillColor2Light, AppTheme.appBarButtonFillColor1Light],
   ];
 
   int index = 0;
@@ -73,7 +84,7 @@ class _GradientAnimatedIconButtonState extends State<GradientAnimatedIconButton>
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: isPressed ? AppTheme.mainGreenColor : AppTheme.appBarButtonFirstBorderColor,
+                color: isPressed ? AppTheme.mainGreenColor : (Provider.of<SwapTheme>(context).getTheme ? AppTheme.appBarButtonFirstBorderColorLight : AppTheme.appBarButtonFirstBorderColorDark),
                 blurRadius: 5,
                 spreadRadius: 0,
                 offset: const Offset(0, 0),
@@ -82,7 +93,7 @@ class _GradientAnimatedIconButtonState extends State<GradientAnimatedIconButton>
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: gradientColors[index],
+              colors: Provider.of<SwapTheme>(context).getTheme ? gradientColorsLight[index] : gradientColorsDark[index],
             ),
           ),
           child: Container(
@@ -94,7 +105,7 @@ class _GradientAnimatedIconButtonState extends State<GradientAnimatedIconButton>
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: gradientColors[2],
+                colors: Provider.of<SwapTheme>(context).getTheme ? [AppTheme.appBarButtonFillColor2Light, AppTheme.appBarButtonFillColor1Light] : [AppTheme.appBarButtonFillColor2Dark, AppTheme.appBarButtonFillColor1Dark],
               ),
             ),
             child: SvgPicture.asset(

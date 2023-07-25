@@ -30,14 +30,20 @@ class AppTheme {
     ],
   );
 
-  static const Color appBarManeColor = Color.fromRGBO(40, 42, 49, 1);
+  static const Color appBarManeColorDark = Color.fromRGBO(27, 28, 34, 1);
+  static const Color appBarManeColorLight = Color.fromRGBO(240, 247, 254, 1);
   static const Color appBarButtonIconColor = Color(0xFFA6ADB5);
-  static const Color appBarButtonFirstBorderColor = Color(0xFF1C1F26);
-  static const Color appBarButtonSecondBorderColor = Color(0xFF4B4F5F);
-  static const Color appBarButtonFillColor1 = Color(0xFF282B33);
-  static const Color appBarButtonFillColor2 = Color(0xFF464851);
+  static const Color appBarButtonFirstBorderColorDark = Color(0xFF1C1F26);
+  static const Color appBarButtonSecondBorderColorDark = Color(0xFF4B4F5F);
+  static const Color appBarButtonFirstBorderColorLight = Color.fromRGBO(230, 241, 254, 1);
+  static const Color appBarButtonSecondBorderColorLight = Color.fromRGBO(252, 253, 254, 1);
+  static const Color appBarButtonFillColor1Dark = Color(0xFF282B33);
+  static const Color appBarButtonFillColor2Dark = Color(0xFF464851);
+  static const Color appBarButtonFillColor2Light = Color.fromRGBO(252, 253, 254, 1);
+  static const Color appBarButtonFillColor1Light = Color.fromRGBO(224, 236, 250, 1);
 
-  static const Color backgroundColor = Color(0xFF2F313A);
+  static const Color backgroundColorDark = Color(0xFF2F313A);
+  static const Color backgroundColorLight = Color.fromRGBO(240, 247, 254, 1);
   static const Color mainGreenColor = Color(0xFF52B69A);
   static const Color mainPinkColor = Color(0xFFCE3B82);
   static const Color mainWhiteColor = Color(0xFFFFFFFF);

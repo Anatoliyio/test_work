@@ -1,6 +1,8 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:provider/provider.dart';
+import 'package:test_work/provider.dart';
 import 'package:test_work/theme/text_styles.dart';
 
 class ButtonGroup extends StatelessWidget {
@@ -92,10 +94,12 @@ class ButtonGroup extends StatelessWidget {
             //   color: Color.fromRGBO(233, 235, 237, 1),
             //   fontSize: 10,
             // ),
-            style: const TextStyle(
+            style: TextStyle(
                 fontFamily: "Roboto",
                 fontSize: 10,
-                color: Color.fromRGBO(233, 235, 237, 1)),
+                color: Provider.of<SwapTheme>(context).getTheme
+                    ? Color.fromRGBO(22, 26, 29, 1)
+                    : Color.fromRGBO(233, 235, 237, 1)),
           ),
         ],
       ),
@@ -121,48 +125,125 @@ class BottomNavButton extends StatelessWidget {
       onTap: () {
         onTap.call();
       },
-      child: Container(
-        width: 56,
-        height: 56,
-        decoration: BoxDecoration(
-          color: isPressed
-              ? const Color.fromRGBO(67, 72, 78, 1)
-              : const Color.fromRGBO(70, 72, 81, 1),
-          borderRadius: BorderRadius.circular(10),
-          border: isPressed
-              ? Border.all(width: 2, color: const Color.fromRGBO(67, 72, 78, 1))
-              : null,
-          boxShadow: [
-            BoxShadow(
-              offset: isPressed ? const Offset(-4, -4) : const Offset(-10, -13),
-              blurRadius: isPressed ? 10 : 10,
-              color: isPressed
-                  ? const Color.fromRGBO(66, 69, 72, 1)
-                  : const Color.fromRGBO(40, 43, 51, 1),
-              inset: true,
+      child: Provider.of<SwapTheme>(context).getTheme
+          ? Stack(
+              alignment: AlignmentDirectional.center,
+              children: [
+                Container(
+                  height: 56,
+                  width: 56,
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(230, 241, 254, 1),
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: isPressed
+                        ? LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color.fromRGBO(255, 255, 255, 1),
+                              Color.fromRGBO(224, 236, 250, 1),
+                            ],
+                          )
+                        : null,
+                  ),
+                ),
+                Container(
+                  width: 53,
+                  height: 53,
+                  decoration: BoxDecoration(
+                    color: isPressed
+                        ? const Color.fromRGBO(224, 236, 250, 1)
+                        : const Color.fromRGBO(230, 241, 254, 1),
+                    // gradient: isPressed
+                    //     ? LinearGradient(colors: [
+                    //         Color.fromRGBO(255, 255, 255, 1),
+                    //         Color.fromRGBO(224, 236, 250, 1),
+                    //       ])
+                    //     : LinearGradient(colors: []),
+                    borderRadius: BorderRadius.circular(9),
+                    boxShadow: [
+                      BoxShadow(
+                        offset: isPressed ? Offset.zero : const Offset(4, 4),
+                        blurRadius: isPressed ? 10 : 10,
+                        color: const Color.fromRGBO(154, 189, 230, 0.3),
+                      ),
+                      BoxShadow(
+                        offset: const Offset(-4, -4),
+                        blurRadius: isPressed ? 10 : 15,
+                        color: isPressed
+                            ? const Color.fromRGBO(255, 255, 255, 1)
+                            : const Color.fromRGBO(154, 189, 230, 0.6),
+                        inset: true,
+                      ),
+                      BoxShadow(
+                        offset: const Offset(4, 4),
+                        blurRadius: isPressed ? 10 : 10,
+                        color: isPressed
+                            ? const Color.fromRGBO(147, 182, 223, 0.2)
+                            : const Color.fromRGBO(255, 255, 255, 1),
+                        inset: true,
+                      ),
+                    ],
+                  ),
+                  child: SvgPicture.asset(
+                    picture,
+                    height: 35,
+                    width: 35,
+                    fit: BoxFit.scaleDown,
+                    colorFilter: ColorFilter.mode(
+                        isPressed
+                            ? const Color.fromRGBO(98, 198, 170, 1)
+                            : const Color.fromRGBO(200, 210, 219, 1),
+                        BlendMode.srcIn),
+                  ),
+                ),
+              ],
+            )
+          : Container(
+              width: 56,
+              height: 56,
+              decoration: BoxDecoration(
+                color: isPressed
+                    ? const Color.fromRGBO(67, 72, 78, 1)
+                    : const Color.fromRGBO(70, 72, 81, 1),
+                borderRadius: BorderRadius.circular(10),
+                border: isPressed
+                    ? Border.all(
+                        width: 2, color: const Color.fromRGBO(67, 72, 78, 1))
+                    : null,
+                boxShadow: [
+                  BoxShadow(
+                    offset: isPressed
+                        ? const Offset(-4, -4)
+                        : const Offset(-10, -13),
+                    blurRadius: isPressed ? 10 : 10,
+                    color: isPressed
+                        ? const Color.fromRGBO(66, 69, 72, 1)
+                        : const Color.fromRGBO(40, 43, 51, 1),
+                    inset: true,
+                  ),
+                  BoxShadow(
+                    offset: isPressed ? const Offset(4, 4) : const Offset(1, 1),
+                    blurRadius: isPressed ? 10 : 7,
+                    color: isPressed
+                        ? const Color.fromRGBO(0, 5, 11, 0.4)
+                        : const Color.fromRGBO(255, 255, 255, 0.3),
+                    inset: true,
+                  ),
+                ],
+              ),
+              child: SvgPicture.asset(
+                picture,
+                height: 35,
+                width: 35,
+                fit: BoxFit.scaleDown,
+                colorFilter: ColorFilter.mode(
+                    isPressed
+                        ? const Color.fromRGBO(98, 198, 170, 1)
+                        : const Color.fromRGBO(143, 153, 163, 1),
+                    BlendMode.srcIn),
+              ),
             ),
-            BoxShadow(
-              offset: isPressed ? const Offset(4, 4) : const Offset(1, 1),
-              blurRadius: isPressed ? 10 : 7,
-              color: isPressed
-                  ? const Color.fromRGBO(0, 5, 11, 0.4)
-                  : const Color.fromRGBO(255, 255, 255, 0.3),
-              inset: true,
-            ),
-          ],
-        ),
-        child: SvgPicture.asset(
-          picture,
-          height: 35,
-          width: 35,
-          fit: BoxFit.scaleDown,
-          colorFilter: ColorFilter.mode(
-              isPressed
-                  ? const Color.fromRGBO(98, 198, 170, 1)
-                  : const Color.fromRGBO(143, 153, 163, 1),
-              BlendMode.srcIn),
-        ),
-      ),
     );
   }
 }
@@ -187,21 +268,23 @@ class BottomNavCenterButton extends StatelessWidget {
         width: 73,
         height: 73,
         decoration: BoxDecoration(
-          color: const Color.fromRGBO(70, 72, 81, 1),
-          borderRadius: BorderRadius.circular(45),
+          shape: BoxShape.circle,
+          color: Provider.of<SwapTheme>(context).getTheme ? const Color.fromRGBO(224, 236, 250, 1) : const Color.fromRGBO(70, 72, 81, 1),
           border: Border.all(
-              width: 2, color: const Color.fromRGBO(98, 198, 170, 1)),
-          boxShadow: const [
+            width: 2,
+            color: const Color.fromRGBO(98, 198, 170, 1),
+          ),
+          boxShadow: [
             BoxShadow(
-              offset: Offset(-13, -13),
-              blurRadius: 15,
-              color: Color.fromRGBO(40, 43, 51, 1),
+              offset: isPressed ? Offset(-4, -4) : Offset(4, 4),
+              blurRadius: 10,
+              color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(255, 255, 255, 1) : Color.fromRGBO(255, 255, 255, 0.3),
               inset: true,
             ),
             BoxShadow(
-              offset: Offset(4, 4),
+              offset: isPressed ? Offset(4, 4) : Offset(-4, -4),
               blurRadius: 10,
-              color: Color.fromRGBO(255, 255, 255, 0.3),
+              color:  Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(161, 196, 237, 0.3) : Color.fromRGBO(40, 43, 51, 1),
               inset: true,
             ),
           ],
@@ -214,8 +297,8 @@ class BottomNavCenterButton extends StatelessWidget {
           colorFilter: ColorFilter.mode(
               isPressed
                   ? const Color.fromRGBO(98, 198, 170, 1)
-                  : const Color.fromRGBO(143, 153, 163, 1),
-              BlendMode.srcIn),
+                  : const Color.fromRGBO(200, 210, 219, 1),
+              BlendMode.srcIn,),
         ),
       ),
     );

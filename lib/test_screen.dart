@@ -1,8 +1,13 @@
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:test_work/provider.dart';
 import 'package:test_work/theme/colors.dart';
 import 'package:test_work/theme/text_styles.dart';
 //import 'package:test_work/models/models.dart';
+
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 
 import 'buttons.dart';
 import 'models.dart';
@@ -58,6 +63,7 @@ class TestWorkState extends State<TestWork> {
 
   List<bool> buttonNavIsPressed = [false, false, false, false, false];
   List<bool> buttonGroupIsPressed = [false, false, false, false, false];
+  List<bool> buttonCelebrateIsPressed = [false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +127,7 @@ class TestWorkState extends State<TestWork> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    'assets/svg/present_1.png',
+                    'assets/images/present_1.png',
                   ),
                   fit: BoxFit.fill,
                 ),
@@ -137,7 +143,7 @@ class TestWorkState extends State<TestWork> {
                 Text(
                   'Наталья Фадеева',
                   style: TextLocalStyles.roboto500.copyWith(
-                    color: Colors.white,
+                    color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(22, 26, 29, 1) : Colors.white,
                     fontSize: 16,
                     height: 0,
                   ),
@@ -145,7 +151,7 @@ class TestWorkState extends State<TestWork> {
                 Text(
                   'г. Тула, Россия',
                   style: TextLocalStyles.roboto400.copyWith(
-                    color: const Color.fromRGBO(188, 192, 200, 1),
+                    color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(98, 118, 132, 1) : Color.fromRGBO(188, 192, 200, 1),
                     fontSize: 14,
                     height: 0,
                   ),
@@ -198,7 +204,9 @@ class TestWorkState extends State<TestWork> {
   Widget birthDay() {
     return SizedBox(
       child: ColoredBox(
-        color: const Color.fromRGBO(0, 0, 0, 0.5),
+        color: Provider.of<SwapTheme>(context).getTheme
+            ? const Color.fromRGBO(255, 255, 255, 0.75)
+            : const Color.fromRGBO(0, 0, 0, 0.5),
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: getWidth(context, 16),
@@ -288,7 +296,9 @@ class TestWorkState extends State<TestWork> {
                   Text(
                     'День рождения дочери и её мамы',
                     style: TextLocalStyles.roboto600.copyWith(
-                      color: Colors.white,
+                      color: Provider.of<SwapTheme>(context).getTheme
+                          ? const Color.fromRGBO(65, 78, 88, 1)
+                          : Colors.white,
                       fontSize: 12,
                     ),
                   ),
@@ -304,10 +314,14 @@ class TestWorkState extends State<TestWork> {
                         width: getWidth(context, 121),
                         child: DecoratedBox(
                           decoration: BoxDecoration(
-                            color: const Color.fromRGBO(52, 54, 62, 1),
+                            color: Provider.of<SwapTheme>(context).getTheme
+                                ? const Color.fromRGBO(250, 255, 255, 1)
+                                : const Color.fromRGBO(52, 54, 62, 1),
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
-                              color: const Color.fromRGBO(66, 68, 77, 1),
+                              color: Provider.of<SwapTheme>(context).getTheme
+                                  ? const Color.fromRGBO(230, 241, 254, 1)
+                                  : const Color.fromRGBO(66, 68, 77, 1),
                               width: 1.2,
                             ),
                           ),
@@ -321,8 +335,11 @@ class TestWorkState extends State<TestWork> {
                                 Text(
                                   '25 Сентября',
                                   style: TextLocalStyles.roboto400.copyWith(
-                                    color:
-                                        const Color.fromRGBO(244, 199, 217, 1),
+                                    color: Provider.of<SwapTheme>(context)
+                                            .getTheme
+                                        ? const Color.fromRGBO(157, 167, 176, 1)
+                                        : const Color.fromRGBO(
+                                            244, 199, 217, 1),
                                     fontSize: 14,
                                   ),
                                 ),
@@ -334,12 +351,17 @@ class TestWorkState extends State<TestWork> {
                                 SizedBox(
                                   height: getHeight(context, 20),
                                   width: getHeight(context, 20),
-                                  child: const DecoratedBox(
+                                  child: DecoratedBox(
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Color.fromRGBO(87, 99, 107, 1),
+                                      color: Provider.of<SwapTheme>(context)
+                                              .getTheme
+                                          ? const Color.fromRGBO(
+                                              237, 244, 251, 1)
+                                          : const Color.fromRGBO(
+                                              87, 99, 107, 1),
                                     ),
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.more_vert,
                                       size: 16,
                                       color: Color.fromRGBO(166, 173, 181, 1),
@@ -361,10 +383,14 @@ class TestWorkState extends State<TestWork> {
                         width: getWidth(context, 121),
                         child: DecoratedBox(
                           decoration: BoxDecoration(
-                            color: const Color.fromRGBO(52, 54, 62, 1),
+                            color: Provider.of<SwapTheme>(context).getTheme
+                                ? const Color.fromRGBO(237, 244, 251, 1)
+                                : const Color.fromRGBO(87, 99, 107, 1),
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
-                              color: const Color.fromRGBO(66, 68, 77, 1),
+                              color: Provider.of<SwapTheme>(context).getTheme
+                                  ? const Color.fromRGBO(230, 241, 254, 1)
+                                  : const Color.fromRGBO(66, 68, 77, 1),
                               width: 1.2,
                             ),
                           ),
@@ -409,10 +435,15 @@ class TestWorkState extends State<TestWork> {
                                 SizedBox(
                                   height: getHeight(context, 20),
                                   width: getHeight(context, 20),
-                                  child: const DecoratedBox(
+                                  child: DecoratedBox(
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Color.fromRGBO(87, 99, 107, 1),
+                                      color: Provider.of<SwapTheme>(context)
+                                              .getTheme
+                                          ? const Color.fromRGBO(
+                                              237, 244, 251, 1)
+                                          : const Color.fromRGBO(
+                                              87, 99, 107, 1),
                                     ),
                                     child: Icon(
                                       Icons.more_vert,
@@ -434,10 +465,14 @@ class TestWorkState extends State<TestWork> {
                       SizedBox(
                         height: getHeight(context, 34),
                         width: getHeight(context, 34),
-                        child: const DecoratedBox(
+                        child: DecoratedBox(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color.fromRGBO(87, 99, 107, 1),
+                            color: Provider.of<SwapTheme>(context)
+                                .getTheme
+                                ? const Color.fromRGBO(221, 232, 245, 1)
+                                : const Color.fromRGBO(
+                                87, 99, 107, 1),
                           ),
                           child: Icon(
                             Icons.close,
@@ -521,24 +556,48 @@ class TestWorkState extends State<TestWork> {
             children: [
               SizedBox(
                 width: getWidth(context, 164),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color: const Color.fromRGBO(110, 210, 182, 1),
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: getHeight(context, 6),
-                      ),
-                      child: Text(
-                        'Праздничное\nторжество',
-                        style: TextLocalStyles.roboto500.copyWith(
-                          color: Colors.white,
-                          fontSize: 14,
-                          height: 0,
+                child: InkWell(
+                  onTap: () {
+                    setState(() {});
+                    buttonCelebrateIsPressed[0] = !buttonCelebrateIsPressed[0];
+                  },
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: const Color.fromRGBO(110, 210, 182, 1),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: buttonCelebrateIsPressed[0]
+                              ? const Offset(5, 5)
+                              : const Offset(-5, -5),
+                          blurRadius: 4,
+                          color: const Color.fromRGBO(0, 0, 0, 0.5),
+                          inset: true,
                         ),
-                        textAlign: TextAlign.center,
+                        BoxShadow(
+                          offset: buttonCelebrateIsPressed[0]
+                              ? const Offset(-5, -5)
+                              : const Offset(5, 5),
+                          blurRadius: 4,
+                          color: const Color.fromRGBO(255, 255, 255, 0.5),
+                          inset: true,
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: getHeight(context, 6),
+                        ),
+                        child: Text(
+                          'Праздничное\nторжество',
+                          style: TextLocalStyles.roboto500.copyWith(
+                            color: Colors.white,
+                            fontSize: 14,
+                            height: 0,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
@@ -546,24 +605,48 @@ class TestWorkState extends State<TestWork> {
               ),
               SizedBox(
                 width: getWidth(context, 164),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color: const Color.fromRGBO(110, 210, 182, 1),
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: getHeight(context, 6),
-                      ),
-                      child: Text(
-                        'Групповое\nмероприятие',
-                        style: TextLocalStyles.roboto500.copyWith(
-                          color: Colors.white,
-                          fontSize: 14,
-                          height: 0,
+                child: InkWell(
+                  onTap: () {
+                    setState(() {});
+                    buttonCelebrateIsPressed[1] = !buttonCelebrateIsPressed[1];
+                  },
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: const Color.fromRGBO(110, 210, 182, 1),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: buttonCelebrateIsPressed[1]
+                              ? const Offset(5, 5)
+                              : const Offset(-5, -5),
+                          blurRadius: 4,
+                          color: const Color.fromRGBO(0, 0, 0, 0.5),
+                          inset: true,
                         ),
-                        textAlign: TextAlign.center,
+                        BoxShadow(
+                          offset: buttonCelebrateIsPressed[1]
+                              ? const Offset(-5, -5)
+                              : const Offset(5, 5),
+                          blurRadius: 4,
+                          color: const Color.fromRGBO(255, 255, 255, 0.5),
+                          inset: true,
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: getHeight(context, 6),
+                        ),
+                        child: Text(
+                          'Групповое\nмероприятие',
+                          style: TextLocalStyles.roboto500.copyWith(
+                            color: Colors.white,
+                            fontSize: 14,
+                            height: 0,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
@@ -578,19 +661,22 @@ class TestWorkState extends State<TestWork> {
 
   Widget listOfChannels() {
     return Expanded(
-      child: ListView.separated(
-        padding: EdgeInsets.symmetric(
-          horizontal: getWidth(context, 16),
-        ),
-        itemBuilder: (context, index) {
-          return channel(index == 0);
-        },
-        separatorBuilder: (_, __) => Padding(
-          padding: EdgeInsets.only(
-            top: getHeight(context, 10),
+      child: Scrollbar(
+        thumbVisibility: true,
+        child: ListView.separated(
+          padding: EdgeInsets.symmetric(
+            horizontal: getWidth(context, 16),
           ),
+          itemBuilder: (context, index) {
+            return channel(index == 0);
+          },
+          separatorBuilder: (_, __) => Padding(
+            padding: EdgeInsets.only(
+              top: getHeight(context, 10),
+            ),
+          ),
+          itemCount: images.length,
         ),
-        itemCount: images.length,
       ),
     );
   }
@@ -626,7 +712,7 @@ class TestWorkState extends State<TestWork> {
                 Text(
                   'Наталья Фадеева',
                   style: TextLocalStyles.roboto500.copyWith(
-                    color: Colors.white,
+                    color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(65, 78, 88, 1) : Colors.white,
                     fontSize: 16,
                     height: 0,
                   ),
@@ -634,7 +720,7 @@ class TestWorkState extends State<TestWork> {
                 Text(
                   'г. Тула, Россия',
                   style: TextLocalStyles.roboto400.copyWith(
-                    color: const Color.fromRGBO(188, 192, 200, 1),
+                    color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(98, 118, 132, 1) : Color.fromRGBO(188, 192, 200, 1),
                     fontSize: 14,
                     height: 0,
                   ),
@@ -646,13 +732,13 @@ class TestWorkState extends State<TestWork> {
               height: getHeight(context, 34),
               width: getWidth(context, 34),
               child: DecoratedBox(
-                decoration: const BoxDecoration(
-                  color: Color.fromRGBO(69, 78, 84, 1),
+                decoration: BoxDecoration(
+                  color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(221, 232, 245, 1) : Color.fromRGBO(69, 78, 84, 1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   isFirst ? Icons.close : Icons.add,
-                  color: const Color.fromRGBO(157, 167, 176, 1),
+                  color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(166, 173, 181, 1) : Color.fromRGBO(157, 167, 176, 1),
                 ),
               ),
             ),
@@ -660,13 +746,14 @@ class TestWorkState extends State<TestWork> {
               SizedBox(
                 height: getHeight(context, 34),
                 width: getWidth(context, 34),
-                child: const DecoratedBox(
+                child: DecoratedBox(
                   decoration: BoxDecoration(
-                      gradient: AppTheme.mainGreenGradient,
+                      gradient: Provider.of<SwapTheme>(context).getTheme ? null : AppTheme.mainGreenGradient,
+                      color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(221, 232, 245, 1) : null,
                       shape: BoxShape.circle),
                   child: Icon(
                     Icons.check,
-                    color: Colors.white,
+                    color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(166, 173, 181, 1) : Colors.white,
                   ),
                 ),
               ),
@@ -683,7 +770,7 @@ class TestWorkState extends State<TestWork> {
           child: DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(
-                color: const Color.fromRGBO(66, 68, 77, 1),
+                color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(218, 229, 242, 1) : Color.fromRGBO(66, 68, 77, 1),
                 width: 1,
               ),
             ),
@@ -698,7 +785,7 @@ class TestWorkState extends State<TestWork> {
       height: getHeight(context, 83),
       width: getWidth(context, 375),
       child: ColoredBox(
-        color: const Color.fromRGBO(0, 0, 0, 0.25),
+        color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(235, 242, 249, 1) : Color.fromRGBO(0, 0, 0, 0.25),
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: getWidth(context, 16),
