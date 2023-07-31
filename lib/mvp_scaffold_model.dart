@@ -17,7 +17,6 @@ class MvpScaffoldModel extends StatelessWidget {
     return Scaffold(
       backgroundColor: Provider.of<SwapTheme>(context).getTheme ? AppTheme.backgroundColorLight : AppTheme.backgroundColorDark,
       appBar: CustomAppBar(
-        onTheme: onTheme,
         name: appBarLabel,
       ),
       body: SafeArea(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:test_work/blocs/date_time_bloc/date_time_bloc.dart';
 import 'package:test_work/provider.dart';
 import 'package:test_work/test_screen.dart';
 
@@ -15,13 +17,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => SwapTheme(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
+      child: BlocProvider<DateTimeBloc>(
+        create: (_) => DateTimeBloc(date: "", time: ""),
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
 
-          primarySwatch: Colors.blue,
+            primarySwatch: Colors.blue,
+          ),
+          home: const MyHomePage(title: 'Flutter Demo Home Page'),
         ),
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
       ),
     );
   }

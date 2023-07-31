@@ -16,6 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       elevation: 0,
       backgroundColor: Provider.of<SwapTheme>(context).getTheme ? AppTheme.appBarManeColorLight : AppTheme.appBarManeColorDark,
       title: Row(
@@ -27,7 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           Text(
             name,
-            style: TextLocalStyles.roboto400.copyWith(fontSize: 18, color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(22, 26, 29, 1) : Colors.white),
+            style: TextLocalStyles.roboto400.copyWith(fontSize: 18, color: Provider.of<SwapTheme>(context).getTheme ? const Color.fromRGBO(22, 26, 29, 1) : Colors.white),
             textAlign: TextAlign.center,
           ),
           GradientAnimatedIconButton(

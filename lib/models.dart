@@ -9,7 +9,7 @@ part 'mvp_appbar.dart';
 
 part 'mvp_scaffold_model.dart';
 
-//part 'mvp_gradient_button.dart';
+part 'mvp_gradient_button.dart';
 
 //part 'more_button.dart';
 

@@ -98,8 +98,8 @@ class ButtonGroup extends StatelessWidget {
                 fontFamily: "Roboto",
                 fontSize: 10,
                 color: Provider.of<SwapTheme>(context).getTheme
-                    ? Color.fromRGBO(22, 26, 29, 1)
-                    : Color.fromRGBO(233, 235, 237, 1)),
+                    ? const Color.fromRGBO(22, 26, 29, 1)
+                    : const Color.fromRGBO(233, 235, 237, 1)),
           ),
         ],
       ),
@@ -133,10 +133,10 @@ class BottomNavButton extends StatelessWidget {
                   height: 56,
                   width: 56,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(230, 241, 254, 1),
+                    color: const Color.fromRGBO(230, 241, 254, 1),
                     borderRadius: BorderRadius.circular(10),
                     gradient: isPressed
-                        ? LinearGradient(
+                        ? const LinearGradient(
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [
@@ -276,15 +276,15 @@ class BottomNavCenterButton extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              offset: isPressed ? Offset(-4, -4) : Offset(4, 4),
+              offset: isPressed ? const Offset(-4, -4) : const Offset(4, 4),
               blurRadius: 10,
-              color: Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(255, 255, 255, 1) : Color.fromRGBO(255, 255, 255, 0.3),
+              color: Provider.of<SwapTheme>(context).getTheme ? const Color.fromRGBO(255, 255, 255, 1) : const Color.fromRGBO(255, 255, 255, 0.3),
               inset: true,
             ),
             BoxShadow(
-              offset: isPressed ? Offset(4, 4) : Offset(-4, -4),
+              offset: isPressed ? const Offset(4, 4) : const Offset(-4, -4),
               blurRadius: 10,
-              color:  Provider.of<SwapTheme>(context).getTheme ? Color.fromRGBO(161, 196, 237, 0.3) : Color.fromRGBO(40, 43, 51, 1),
+              color:  Provider.of<SwapTheme>(context).getTheme ? const Color.fromRGBO(161, 196, 237, 0.3) : const Color.fromRGBO(40, 43, 51, 1),
               inset: true,
             ),
           ],
