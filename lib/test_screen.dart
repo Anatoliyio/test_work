@@ -10,8 +10,8 @@ import 'package:test_work/theme/text_styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_work/blocs/date_time_bloc/date_time_bloc.dart';
 
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
-import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:flutter/material.dart';
+//import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 
 import 'buttons.dart';
 import 'models.dart';
@@ -688,115 +688,29 @@ class TestWorkState extends State<TestWork> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                width: getWidth(context, 164),
-                child: InkWell(
-                  onTap: () {
-                    setState(() {});
-                    buttonCelebrateIsPressed[0] = !buttonCelebrateIsPressed[0];
-                    buttonCelebrateIsPressed[1] = false;
-                    if (dataIsOk()) {
-                      isOk = true;
-                    } else {
-                      isOk = false;
-                    }
-                  },
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: const Color.fromRGBO(110, 210, 182, 1),
-                      boxShadow: [
-                        BoxShadow(
-                          offset: buttonCelebrateIsPressed[0]
-                              ? const Offset(5, 5)
-                              : const Offset(-5, -5),
-                          blurRadius: 4,
-                          color: const Color.fromRGBO(0, 0, 0, 0.5),
-                          inset: true,
-                        ),
-                        BoxShadow(
-                          offset: buttonCelebrateIsPressed[0]
-                              ? const Offset(-5, -5)
-                              : const Offset(5, 5),
-                          blurRadius: 4,
-                          color: const Color.fromRGBO(255, 255, 255, 0.5),
-                          inset: true,
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: getHeight(context, 6),
-                        ),
-                        child: Text(
-                          'Праздничное\nторжество',
-                          style: TextLocalStyles.roboto500.copyWith(
-                            color: Colors.white,
-                            fontSize: 14,
-                            height: 0,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+              PickCelebrateButton(isPressed: buttonCelebrateIsPressed[0],
+                onTap: (){
+                  setState(() {});
+                  buttonCelebrateIsPressed[0] = !buttonCelebrateIsPressed[0];
+                  buttonCelebrateIsPressed[1] = false;
+                  if (dataIsOk()) {
+                    isOk = true;
+                  } else {
+                    isOk = false;
+                  }
+                },
               ),
-              SizedBox(
-                width: getWidth(context, 164),
-                child: InkWell(
-                  onTap: () {
-                    setState(() {});
-                    buttonCelebrateIsPressed[1] = !buttonCelebrateIsPressed[1];
-                    buttonCelebrateIsPressed[0] = false;
-                    if (dataIsOk()) {
-                      isOk = true;
-                    } else {
-                      isOk = false;
-                    }
-                  },
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: const Color.fromRGBO(110, 210, 182, 1),
-                      boxShadow: [
-                        BoxShadow(
-                          offset: buttonCelebrateIsPressed[1]
-                              ? const Offset(5, 5)
-                              : const Offset(-5, -5),
-                          blurRadius: 4,
-                          color: const Color.fromRGBO(0, 0, 0, 0.5),
-                          inset: true,
-                        ),
-                        BoxShadow(
-                          offset: buttonCelebrateIsPressed[1]
-                              ? const Offset(-5, -5)
-                              : const Offset(5, 5),
-                          blurRadius: 4,
-                          color: const Color.fromRGBO(255, 255, 255, 0.5),
-                          inset: true,
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: getHeight(context, 6),
-                        ),
-                        child: Text(
-                          'Групповое\nмероприятие',
-                          style: TextLocalStyles.roboto500.copyWith(
-                            color: Colors.white,
-                            fontSize: 14,
-                            height: 0,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+              PickCelebrateButton(isPressed: buttonCelebrateIsPressed[1],
+                onTap: (){
+                  setState(() {});
+                  buttonCelebrateIsPressed[1] = !buttonCelebrateIsPressed[1];
+                  buttonCelebrateIsPressed[0] = false;
+                  if (dataIsOk()) {
+                    isOk = true;
+                  } else {
+                    isOk = false;
+                  }
+                },
               ),
             ],
           ),

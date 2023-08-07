@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:test_work/provider.dart';
 import 'package:test_work/theme/text_styles.dart';
 
+import 'models.dart';
+
 class ButtonGroup extends StatelessWidget {
   static const blur = 4.0;
   final Color colorMain;
@@ -102,6 +104,69 @@ class ButtonGroup extends StatelessWidget {
                     : const Color.fromRGBO(233, 235, 237, 1)),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class PickCelebrateButton extends StatelessWidget {
+  final bool isPressed;
+  final VoidCallback? onTap;
+
+  const PickCelebrateButton({
+    Key? key,
+    required this.isPressed,
+    this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: getWidth(context, 164),
+      child: InkWell(
+        onTap: () {
+          onTap?.call();
+        },
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            color: const Color.fromRGBO(110, 210, 182, 1),
+            boxShadow: [
+              BoxShadow(
+                offset: isPressed
+                    ? const Offset(5, 5)
+                    : const Offset(-5, -5),
+                blurRadius: 4,
+                color: const Color.fromRGBO(0, 0, 0, 0.5),
+                inset: true,
+              ),
+              BoxShadow(
+                offset: isPressed
+                    ? const Offset(-5, -5)
+                    : const Offset(5, 5),
+                blurRadius: 4,
+                color: const Color.fromRGBO(255, 255, 255, 0.5),
+                inset: true,
+              ),
+            ],
+          ),
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: getHeight(context, 6),
+              ),
+              child: Text(
+                'Праздничное\nторжество',
+                style: TextLocalStyles.roboto500.copyWith(
+                  color: Colors.white,
+                  fontSize: 14,
+                  height: 0,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -269,7 +334,9 @@ class BottomNavCenterButton extends StatelessWidget {
         height: 73,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Provider.of<SwapTheme>(context).getTheme ? const Color.fromRGBO(224, 236, 250, 1) : const Color.fromRGBO(70, 72, 81, 1),
+          color: Provider.of<SwapTheme>(context).getTheme
+              ? const Color.fromRGBO(224, 236, 250, 1)
+              : const Color.fromRGBO(70, 72, 81, 1),
           border: Border.all(
             width: 2,
             color: const Color.fromRGBO(98, 198, 170, 1),
@@ -278,13 +345,17 @@ class BottomNavCenterButton extends StatelessWidget {
             BoxShadow(
               offset: isPressed ? const Offset(-4, -4) : const Offset(4, 4),
               blurRadius: 10,
-              color: Provider.of<SwapTheme>(context).getTheme ? const Color.fromRGBO(255, 255, 255, 1) : const Color.fromRGBO(255, 255, 255, 0.3),
+              color: Provider.of<SwapTheme>(context).getTheme
+                  ? const Color.fromRGBO(255, 255, 255, 1)
+                  : const Color.fromRGBO(255, 255, 255, 0.3),
               inset: true,
             ),
             BoxShadow(
               offset: isPressed ? const Offset(4, 4) : const Offset(-4, -4),
               blurRadius: 10,
-              color:  Provider.of<SwapTheme>(context).getTheme ? const Color.fromRGBO(161, 196, 237, 0.3) : const Color.fromRGBO(40, 43, 51, 1),
+              color: Provider.of<SwapTheme>(context).getTheme
+                  ? const Color.fromRGBO(161, 196, 237, 0.3)
+                  : const Color.fromRGBO(40, 43, 51, 1),
               inset: true,
             ),
           ],
@@ -295,10 +366,11 @@ class BottomNavCenterButton extends StatelessWidget {
           width: 37,
           fit: BoxFit.scaleDown,
           colorFilter: ColorFilter.mode(
-              isPressed
-                  ? const Color.fromRGBO(98, 198, 170, 1)
-                  : const Color.fromRGBO(200, 210, 219, 1),
-              BlendMode.srcIn,),
+            isPressed
+                ? const Color.fromRGBO(98, 198, 170, 1)
+                : const Color.fromRGBO(200, 210, 219, 1),
+            BlendMode.srcIn,
+          ),
         ),
       ),
     );
