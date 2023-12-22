@@ -1,16 +1,18 @@
-# test_work
+# Мобильное Приложение
+## Описание проекта
+Этот проект представляет собой мобильное приложение для университета,
+предназначенное для удобного просмотра и управления расписанием занятий.
+Приложение создано с целью облегчения процесса планирования учебного дня и
+предоставления студентам удобного инструмента для отслеживания своего
+расписания.
+## Возможности
+Уведомления: Приложение предоставляет возможность настройки уведомлений о предстоящих занятиях, экзаменах и других событиях, чтобы студенты не пропускали важные сроки.
 
-A new Flutter project.
+Поиск и Фильтрация: Студенты могут легко находить нужную информацию, используя функции поиска и фильтрации. Это помогает быстро найти конкретный предмет или преподавателя.
 
-## Getting Started
+Добавление событий: Пользователи могут добавлять собственные события, такие как встречи с преподавателями, дедлайны по проектам или другие важные события, которые не входят в стандартное расписание.
 
-This project is a starting point for a Flutter application.
+## Технологии
+Фронтенд: Приложение разработано с использованием Flutter.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Бэкенд: Для хранения данных о расписании и пользователях используется серверная часть, построенная с применением технологий, таких как Node.js, Express и MongoDB.
